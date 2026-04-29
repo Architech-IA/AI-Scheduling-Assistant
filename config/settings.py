@@ -13,9 +13,9 @@ class Settings(BaseSettings):
     # Telegram
     telegram_bot_token: str = Field(..., env="TELEGRAM_BOT_TOKEN")
 
-    # WhatsApp
-    whatsapp_api_key: str = Field("", env="WHATSAPP_API_KEY")
-    whatsapp_phone_number_id: str = Field("", env="WHATSAPP_PHONE_NUMBER_ID")
+    # WhatsApp (YCloud / Meta Cloud API)
+    ycloud_api_key: str = Field(..., env="YCLOUD_API_KEY")
+    ycloud_phone_number: str = Field(..., env="YCLOUD_PHONE_NUMBER")
     whatsapp_verify_token: str = Field("verify123", env="WHATSAPP_VERIFY_TOKEN")
 
     # Google
