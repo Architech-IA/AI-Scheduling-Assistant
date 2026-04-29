@@ -6,10 +6,13 @@ from loguru import logger
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
+from starlette.requests import Request
+from starlette.responses import JSONResponse
 
 from config.settings import settings
 from app.channels.telegram import router as telegram_router
 from app.channels.whatsapp import router as whatsapp_router
+from app.channels.api import router as api_router
 
 
 # ── Logging ──────────────────────────────────────────────────────
@@ -54,9 +57,20 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# ── Manejadores de errores globales ────────────────────────────────
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    logger.error(f"Error no manejado: {exc}")
+    return JSONResponse(
+        status_code=500,
+        content={"success": False, "error": "Error interno del servidor."}
+    )
+
+
 # Registrar rutas de canales
 app.include_router(telegram_router)
 app.include_router(whatsapp_router)
+app.include_router(api_router)
 
 
 @app.get("/")

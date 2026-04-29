@@ -1,26 +1,10 @@
-# Entorno
-.env
-venv/
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-
-# Credenciales — NUNCA subir al repo
+*.py[cod]
+*$py.class
+venv/
+.env
+*.env
 config/google_credentials.json
-config/client_secret*.json
-*.json.key
-
-# Datos locales
-data/
 logs/
-
-# IDE
-.vscode/
-.idea/
-*.swp
-
-# OS
+data/
 .DS_Store
-Thumbs.db
