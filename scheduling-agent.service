@@ -1,0 +1,19 @@
+[Unit]
+Description=Asistente de Agendamiento con IA
+After=network.target redis.service
+Wants=redis.service
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/opt/scheduling-agent
+EnvironmentFile=/opt/scheduling-agent/.env
+ExecStart=/opt/scheduling-agent/venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 2
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=scheduling-agent
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,26 @@
+# Entorno
+.env
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Credenciales — NUNCA subir al repo
+config/google_credentials.json
+config/client_secret*.json
+*.json.key
+
+# Datos locales
+data/
+logs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
